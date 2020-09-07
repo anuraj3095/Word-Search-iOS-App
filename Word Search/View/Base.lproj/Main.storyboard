@@ -11,7 +11,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Main View Controller" customClass="ViewController" customModule="Word_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Main View Controller" customClass="MainScreenViewController" customModule="Word_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,21 +31,38 @@
                                     <color key="titleColor" red="0.9882352941176471" green="0.42745098039215684" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="91p-tq-7gb" kind="presentation" modalPresentationStyle="fullScreen" id="cY1-JJ-vTP"/>
+                                    <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4YP-zF-Pja"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-po-wvD">
+                                <rect key="frame" x="138" y="503" width="138" height="40"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.90588235289999997" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BMt-e9-fCw"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="X4k-9X-8tS"/>
+                                </constraints>
+                                <color key="textColor" red="0.98823529409999999" green="0.42745098040000001" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Vrb-po-wvD" firstAttribute="top" secondItem="lm0-yD-fG6" secondAttribute="bottom" constant="30" id="02U-Fg-iiu"/>
                             <constraint firstAttribute="bottom" secondItem="Rpm-SI-Rv7" secondAttribute="bottom" constant="-30" id="1Yu-T6-feY"/>
                             <constraint firstItem="lm0-yD-fG6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2JB-wL-veK"/>
                             <constraint firstItem="Rpm-SI-Rv7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-30" id="B01-zI-al6"/>
                             <constraint firstItem="Rpm-SI-Rv7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KYD-sG-2FM"/>
+                            <constraint firstItem="Vrb-po-wvD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UjB-Zr-dwj"/>
                             <constraint firstItem="lm0-yD-fG6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mVH-1y-pIU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rpm-SI-Rv7" secondAttribute="trailing" id="pPt-Ba-MlB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="wordCategortField" destination="Vrb-po-wvD" id="ye6-Xp-GwZ"/>
+                        <segue destination="91p-tq-7gb" kind="presentation" identifier="goToArena" modalPresentationStyle="fullScreen" id="OQO-ks-ikD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

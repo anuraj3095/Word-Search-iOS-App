@@ -26,12 +26,14 @@ class ArenaViewController: UIViewController {
     var selectedCells: [Int] = []
     var numberOfWordsGuessed = 0
     var wordsManager = WordsListsManager()
+    var wordCategory = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns)
-        updateWordsLables()
-        matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
+        resetGame()
+//        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns, category: wordCategory)
+//        updateWordsLables()
+//        matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
         // Do any additional setup after loading the view.
     }
     
@@ -121,15 +123,6 @@ class ArenaViewController: UIViewController {
         }
 
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -237,7 +230,7 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         selectedCells.removeAll()
         currentWordSelection = ""
         matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
-        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns)
+        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns, category: wordCategory)
         wordsCollection.reloadData()
         updateWordsLables()
         
