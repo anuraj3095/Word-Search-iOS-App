@@ -15,6 +15,7 @@
 		299D9A962505C169005E666B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299D9A942505C169005E666B /* LaunchScreen.storyboard */; };
 		299D9AA32505CE3C005E666B /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA22505CE3C005E666B /* WordCollectionViewCell.swift */; };
 		299D9AA52505CEF4005E666B /* ArenaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA42505CEF4005E666B /* ArenaViewController.swift */; };
+		299D9AA72505EF0E005E666B /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA62505EF0E005E666B /* WordsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		299D9A972505C169005E666B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299D9AA22505CE3C005E666B /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
 		299D9AA42505CEF4005E666B /* ArenaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaViewController.swift; sourceTree = "<group>"; };
+		299D9AA62505EF0E005E666B /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		299D9A9F2505C44F005E666B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				299D9AA62505EF0E005E666B /* WordsList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				299D9AA52505CEF4005E666B /* ArenaViewController.swift in Sources */,
+				299D9AA72505EF0E005E666B /* WordsList.swift in Sources */,
 				299D9A8E2505C163005E666B /* ViewController.swift in Sources */,
 				299D9A8A2505C163005E666B /* AppDelegate.swift in Sources */,
 				299D9AA32505CE3C005E666B /* WordCollectionViewCell.swift in Sources */,
