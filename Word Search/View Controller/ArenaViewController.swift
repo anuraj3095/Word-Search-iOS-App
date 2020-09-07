@@ -15,22 +15,34 @@ class ArenaViewController: UIViewController {
     let totalElements = 144
     let totalRows = 12
     let totalColomns = 12
-    let totalWords = 9
+    let totalWords = 6
     var matrix : Array<[Int]> = [[]]
+    var wordsLabelsList : Array<UILabel> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getRandomFromList()
+        updateWordsLables()
         matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
         // Do any additional setup after loading the view.
     }
     
+    // MARK: - Outlets
     @IBOutlet weak var wordsCollection: UICollectionView!
+    @IBOutlet weak var word1Label: UILabel!
+    @IBOutlet weak var word2Label: UILabel!
+    @IBOutlet weak var word3Label: UILabel!
+    @IBOutlet weak var word4Label: UILabel!
+    @IBOutlet weak var word5Label: UILabel!
+    @IBOutlet weak var word6Label: UILabel!
+    
+    // MARK: - Actions
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - methods
     func getRandomLetter() -> String {
         let letters : String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         let char = letters.randomElement()!
@@ -47,6 +59,21 @@ class ArenaViewController: UIViewController {
             wordsList.append(word)
         }
         
+    }
+    
+    func updateWordsLables() {
+        wordsLabelsList.append(word1Label)
+        wordsLabelsList.append(word2Label)
+        wordsLabelsList.append(word3Label)
+        wordsLabelsList.append(word4Label)
+        wordsLabelsList.append(word5Label)
+        wordsLabelsList.append(word6Label)
+        word1Label.text = wordsList[0]
+        word2Label.text = wordsList[1]
+        word3Label.text = wordsList[2]
+        word4Label.text = wordsList[3]
+        word5Label.text = wordsList[4]
+        word6Label.text = wordsList[5]
     }
     
     func addWordsToCollection() {
