@@ -12,12 +12,16 @@ class ArenaViewController: UIViewController {
 
     let reuseIdentifier = "letterCell"
     var wordsList: [String] = []
-    var totalElements = 64
-    var matrix = Array(repeating: Array(repeating: 0, count: 8), count: 8)
+    let totalElements = 144
+    let totalRows = 12
+    let totalColomns = 12
+    let totalWords = 9
+    var matrix : Array<[Int]> = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getRandomFromList()
+        matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
         // Do any additional setup after loading the view.
     }
     
@@ -35,9 +39,9 @@ class ArenaViewController: UIViewController {
     
     func getRandomFromList() {
         // make sure word is not repeating and size > row or column
-        for _ in 0...1 {
+        for _ in 0...totalWords {
             var word = WordsLists.country_list.randomElement()!
-            while (word.count > 8 || wordsList.contains(word)) {
+            while (word.count > totalRows || wordsList.contains(word)) {
                 word = WordsLists.country_list.randomElement()!
             }
             wordsList.append(word)
@@ -49,8 +53,8 @@ class ArenaViewController: UIViewController {
         
         for word in wordsList {
             
-            var startRow = Int.random(in: 0..<8)
-            var startColumn = Int.random(in: 0..<8)
+            var startRow = Int.random(in: 0..<totalRows)
+            var startColumn = Int.random(in: 0..<totalColomns)
             let wordSize = word.count
             // if we have space to add in right continue or again get a random value
             
@@ -60,12 +64,12 @@ class ArenaViewController: UIViewController {
             
             while iter != wordSize {
                 
-                if colm >= 8 || row >= 8 || matrix[row][colm] == 1  {
+                if colm >= totalColomns || row >= totalRows || matrix[row][colm] == 1  {
                     // we have collision or we are out of bounds get a new
                     iter = 0 // reset iterations
                     // get new starting row and colmn
-                    startRow = Int.random(in: 0..<8)
-                    startColumn = Int.random(in: 0..<8)
+                    startRow = Int.random(in: 0..<totalRows)
+                    startColumn = Int.random(in: 0..<totalColomns)
                     row = startRow
                     colm = startColumn
                 } else {
@@ -76,18 +80,20 @@ class ArenaViewController: UIViewController {
             }
             
             // we got a place to put our word
-            var indx = startRow * 8 + startColumn
+            var indx = (startRow * totalRows) + startColumn
             for char in word {
             let indxPath = IndexPath(row: indx, section: 0)
-            indx += 1
-            let cell = wordsCollection.cellForItem(at: indxPath) as! WordCollectionViewCell
+                if let cell = wordsCollection.cellForItem(at: indxPath) as? WordCollectionViewCell {
                 cell.letter.text = String(char).capitalized
                 // testing new entries
                 cell.letter.textColor = UIColor.red
                 //update Matrix
+                }
                 matrix[startRow][startColumn] = 1
                 //startRow += 1
                 startColumn += 1
+                indx += 1
+                
             }
             
         }
@@ -131,14 +137,21 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         
         if indexPath.item == totalElements - 1 {
             // done loading all collection view cells
-            addWordsToCollection()
+            DispatchQueue.main.async {
+                self.addWordsToCollection()
+            }
         }
     }
+    
     
     // MARK: - UICollectionViewDelegate protocol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item) and section \(indexPath.section) and  row \(indexPath.row)!")
+        
+        let cell = wordsCollection.cellForItem(at: indexPath) as! WordCollectionViewCell
+        cell.letter.backgroundColor = UIColor.yellow
+        //update Matrix
     }
 }
