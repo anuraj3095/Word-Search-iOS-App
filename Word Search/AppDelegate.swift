@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Word Search
 //
-//  Created by Yan Li on 9/6/20.
+//  Created by Anuraj on 9/6/20.
 //  Copyright © 2020 Anuraj. All rights reserved.
 //
 

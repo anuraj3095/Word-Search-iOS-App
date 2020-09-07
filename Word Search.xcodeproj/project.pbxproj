@@ -56,15 +56,39 @@
 		299D9A882505C163005E666B /* Word Search */ = {
 			isa = PBXGroup;
 			children = (
+				299D9A9F2505C44F005E666B /* Model */,
+				299D9A9E2505C42C005E666B /* View Controller */,
+				299D9A9D2505C41B005E666B /* View */,
 				299D9A892505C163005E666B /* AppDelegate.swift */,
 				299D9A8B2505C163005E666B /* SceneDelegate.swift */,
-				299D9A8D2505C163005E666B /* ViewController.swift */,
-				299D9A8F2505C163005E666B /* Main.storyboard */,
 				299D9A922505C169005E666B /* Assets.xcassets */,
-				299D9A942505C169005E666B /* LaunchScreen.storyboard */,
 				299D9A972505C169005E666B /* Info.plist */,
 			);
 			path = "Word Search";
+			sourceTree = "<group>";
+		};
+		299D9A9D2505C41B005E666B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				299D9A8F2505C163005E666B /* Main.storyboard */,
+				299D9A942505C169005E666B /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		299D9A9E2505C42C005E666B /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				299D9A8D2505C163005E666B /* ViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		299D9A9F2505C44F005E666B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
