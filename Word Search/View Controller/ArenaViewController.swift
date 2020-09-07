@@ -25,10 +25,11 @@ class ArenaViewController: UIViewController {
     }
     var selectedCells: [Int] = []
     var numberOfWordsGuessed = 0
+    var wordsManager = WordsListsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRandomFromList()
+        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns)
         updateWordsLables()
         matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
         // Do any additional setup after loading the view.
@@ -53,24 +54,7 @@ class ArenaViewController: UIViewController {
         resetGame()
     }
     // MARK: - methods
-    func getRandomLetter() -> String {
-        let letters : String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let char = letters.randomElement()!
-        return String(char)
-    }
     
-    func getRandomFromList() {
-        // make sure word is not repeating and size > row or column
-        wordsList.removeAll()
-        for _ in 0..<totalWords {
-            var word = WordsLists.country_list.randomElement()!
-            while (word.count > totalRows || wordsList.contains(word)) {
-                word = WordsLists.country_list.randomElement()!
-            }
-            wordsList.append(word)
-        }
-        
-    }
     
     func updateWordsLables() {
         wordsLabelsList.append(word1Label)
@@ -165,7 +149,7 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! WordCollectionViewCell
 
-        cell.letter.text = getRandomLetter()
+        cell.letter.text = wordsManager.getRandomLetter()
         cell.letter.textColor = UIColor.black
         //cell.backgroundColor = UIColor.cyan
         
@@ -252,7 +236,8 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         numberOfWordsGuessed = 0
         selectedCells.removeAll()
         currentWordSelection = ""
-        getRandomFromList()
+        matrix =  Array(repeating: Array(repeating: 0, count: totalColomns), count: totalRows)
+        wordsList = wordsManager.getRandomFromList(totalWords: totalWords, wordLimit: totalColomns)
         wordsCollection.reloadData()
         updateWordsLables()
         
