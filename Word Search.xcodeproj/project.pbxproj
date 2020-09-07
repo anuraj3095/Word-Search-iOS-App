@@ -16,6 +16,7 @@
 		299D9AA32505CE3C005E666B /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA22505CE3C005E666B /* WordCollectionViewCell.swift */; };
 		299D9AA52505CEF4005E666B /* ArenaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA42505CEF4005E666B /* ArenaViewController.swift */; };
 		299D9AA72505EF0E005E666B /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA62505EF0E005E666B /* WordsList.swift */; };
+		299D9AA92506BDFA005E666B /* GlobalButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299D9AA82506BDFA005E666B /* GlobalButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		299D9AA22505CE3C005E666B /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
 		299D9AA42505CEF4005E666B /* ArenaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaViewController.swift; sourceTree = "<group>"; };
 		299D9AA62505EF0E005E666B /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
+		299D9AA82506BDFA005E666B /* GlobalButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				299D9A8D2505C163005E666B /* MainScreenViewController.swift */,
 				299D9AA22505CE3C005E666B /* WordCollectionViewCell.swift */,
 				299D9AA42505CEF4005E666B /* ArenaViewController.swift */,
+				299D9AA82506BDFA005E666B /* GlobalButtonStyle.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				299D9AA72505EF0E005E666B /* WordsList.swift in Sources */,
 				299D9A8E2505C163005E666B /* MainScreenViewController.swift in Sources */,
 				299D9A8A2505C163005E666B /* AppDelegate.swift in Sources */,
+				299D9AA92506BDFA005E666B /* GlobalButtonStyle.swift in Sources */,
 				299D9AA32505CE3C005E666B /* WordCollectionViewCell.swift in Sources */,
 				299D9A8C2505C163005E666B /* SceneDelegate.swift in Sources */,
 			);
