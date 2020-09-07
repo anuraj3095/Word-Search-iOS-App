@@ -15,7 +15,7 @@ class ArenaViewController: UIViewController {
     let totalElements = 144
     let totalRows = 12
     let totalColomns = 12
-    let totalWords = 1
+    let totalWords = 3
     var matrix : Array<[Int]> = [[]]
     var wordsLabelsList : Array<UILabel> = []
     var currentWordSelection: String = "" {
@@ -49,6 +49,9 @@ class ArenaViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func resetButtonPressed(_ sender: Any) {
+        resetGame()
+    }
     // MARK: - methods
     func getRandomLetter() -> String {
         let letters : String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -58,6 +61,7 @@ class ArenaViewController: UIViewController {
     
     func getRandomFromList() {
         // make sure word is not repeating and size > row or column
+        wordsList.removeAll()
         for _ in 0..<totalWords {
             var word = WordsLists.country_list.randomElement()!
             while (word.count > totalRows || wordsList.contains(word)) {
@@ -76,8 +80,8 @@ class ArenaViewController: UIViewController {
         wordsLabelsList.append(word5Label)
         wordsLabelsList.append(word6Label)
         word1Label.text = wordsList[0]
-//        word2Label.text = wordsList[1]
-//        word3Label.text = wordsList[2]
+        word2Label.text = wordsList[1]
+        word3Label.text = wordsList[2]
 //        word4Label.text = wordsList[3]
 //        word5Label.text = wordsList[4]
 //        word6Label.text = wordsList[5]
@@ -162,6 +166,7 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! WordCollectionViewCell
 
         cell.letter.text = getRandomLetter()
+        cell.letter.textColor = UIColor.black
         //cell.backgroundColor = UIColor.cyan
         
         return cell
@@ -228,13 +233,13 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         if numberOfWordsGuessed == totalWords {
             //Alert User we won
             winAlert()
-            resetGame()
+            //resetGame()
         }
     }
     
     func winAlert() {
         let alert = UIAlertController(title: "WON",message: "You Found Them ALL", preferredStyle: .actionSheet)
-        let dismissAction = UIAlertAction(title: "RESET", style: .destructive, handler: nil)
+        let dismissAction = UIAlertAction(title: "RESET", style: .destructive, handler: {_ in self.resetGame()})
         alert.addAction(dismissAction)
         self.present(alert, animated: true, completion:  nil)
         // change the background color
@@ -244,7 +249,12 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
     }
     
     func resetGame() {
-        //TODO
-        return
+        numberOfWordsGuessed = 0
+        selectedCells.removeAll()
+        currentWordSelection = ""
+        getRandomFromList()
+        wordsCollection.reloadData()
+        updateWordsLables()
+        
     }
 }

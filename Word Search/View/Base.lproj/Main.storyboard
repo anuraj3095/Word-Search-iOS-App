@@ -190,6 +190,21 @@
                                     <action selector="backButtonPressed:" destination="91p-tq-7gb" eventType="touchUpInside" id="HBr-W5-O8B"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjW-2M-Toi">
+                                <rect key="frame" x="177" y="684" width="60" height="40"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.90588235289999997" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="35M-xT-2y8"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Pf4-hv-n90"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="0.98823529409999999" green="0.42745098040000001" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="91p-tq-7gb" eventType="touchUpInside" id="S90-Hb-nY5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -197,6 +212,8 @@
                             <constraint firstItem="nvP-cs-WmC" firstAttribute="centerX" secondItem="ytG-47-u8D" secondAttribute="centerX" id="DaL-K0-kOu"/>
                             <constraint firstAttribute="bottom" secondItem="ddG-BL-hKK" secondAttribute="bottom" constant="-30" id="L0S-OU-4Ra"/>
                             <constraint firstItem="I1l-Pw-ne9" firstAttribute="top" secondItem="uhM-t3-1Gb" secondAttribute="top" id="MyX-2p-BzR"/>
+                            <constraint firstItem="YjW-2M-Toi" firstAttribute="top" secondItem="nvP-cs-WmC" secondAttribute="bottom" constant="30" id="Ppr-R5-kHl"/>
+                            <constraint firstItem="YjW-2M-Toi" firstAttribute="centerX" secondItem="ytG-47-u8D" secondAttribute="centerX" id="TU7-dt-2Tf"/>
                             <constraint firstItem="es2-yt-ixC" firstAttribute="centerX" secondItem="ytG-47-u8D" secondAttribute="centerX" id="XiP-5L-afo"/>
                             <constraint firstItem="I1l-Pw-ne9" firstAttribute="leading" secondItem="uhM-t3-1Gb" secondAttribute="leading" id="eaY-X4-zdd"/>
                             <constraint firstItem="nvP-cs-WmC" firstAttribute="leading" secondItem="uhM-t3-1Gb" secondAttribute="leading" constant="50" id="ifs-6L-13C"/>
