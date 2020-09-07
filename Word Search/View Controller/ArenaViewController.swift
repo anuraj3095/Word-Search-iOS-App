@@ -15,9 +15,16 @@ class ArenaViewController: UIViewController {
     let totalElements = 144
     let totalRows = 12
     let totalColomns = 12
-    let totalWords = 6
+    let totalWords = 1
     var matrix : Array<[Int]> = [[]]
     var wordsLabelsList : Array<UILabel> = []
+    var currentWordSelection: String = "" {
+        didSet {
+            checkWordSelection()
+        }
+    }
+    var selectedCells: [Int] = []
+    var numberOfWordsGuessed = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +58,7 @@ class ArenaViewController: UIViewController {
     
     func getRandomFromList() {
         // make sure word is not repeating and size > row or column
-        for _ in 0...totalWords {
+        for _ in 0..<totalWords {
             var word = WordsLists.country_list.randomElement()!
             while (word.count > totalRows || wordsList.contains(word)) {
                 word = WordsLists.country_list.randomElement()!
@@ -69,11 +76,11 @@ class ArenaViewController: UIViewController {
         wordsLabelsList.append(word5Label)
         wordsLabelsList.append(word6Label)
         word1Label.text = wordsList[0]
-        word2Label.text = wordsList[1]
-        word3Label.text = wordsList[2]
-        word4Label.text = wordsList[3]
-        word5Label.text = wordsList[4]
-        word6Label.text = wordsList[5]
+//        word2Label.text = wordsList[1]
+//        word3Label.text = wordsList[2]
+//        word4Label.text = wordsList[3]
+//        word5Label.text = wordsList[4]
+//        word6Label.text = wordsList[5]
     }
     
     func addWordsToCollection() {
@@ -178,7 +185,66 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         print("You selected cell #\(indexPath.item) and section \(indexPath.section) and  row \(indexPath.row)!")
         
         let cell = wordsCollection.cellForItem(at: indexPath) as! WordCollectionViewCell
-        cell.letter.backgroundColor = UIColor.yellow
-        //update Matrix
+        
+        if selectedCells.isEmpty || selectedCells.last == indexPath.item - 1 {
+            cell.letter.backgroundColor = UIColor.yellow
+            selectedCells.append(indexPath.row)
+            currentWordSelection += cell.letter.text!
+        }
+        else {
+            clearAllSelction()
+        }
+    }
+    
+    func clearAllSelction() {
+        currentWordSelection = ""
+        for cellIndx in selectedCells {
+            let cell = wordsCollection.cellForItem(at: IndexPath(row: cellIndx, section: 0)) as! WordCollectionViewCell
+            cell.letter.backgroundColor = UIColor.clear
+        }
+        selectedCells.removeAll()
+    }
+    
+    func checkWordSelection() {
+        var indx = 0
+        for word in wordsList {
+            
+            if word.caseInsensitiveCompare(currentWordSelection) == .orderedSame {
+                
+                numberOfWordsGuessed += 1
+                for cellIndx in selectedCells {
+                    let cell = wordsCollection.cellForItem(at: IndexPath(row: cellIndx, section: 0)) as! WordCollectionViewCell
+                    cell.letter.textColor = UIColor.green
+                    cell.letter.backgroundColor = UIColor.clear
+                }
+                
+                wordsLabelsList[indx].textColor = UIColor.red
+                currentWordSelection = ""
+                selectedCells.removeAll()
+            }
+            indx += 1
+        }
+        
+        if numberOfWordsGuessed == totalWords {
+            //Alert User we won
+            winAlert()
+            resetGame()
+        }
+    }
+    
+    func winAlert() {
+        let alert = UIAlertController(title: "WON",message: "You Found Them ALL", preferredStyle: .actionSheet)
+        let dismissAction = UIAlertAction(title: "RESET", style: .destructive, handler: nil)
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true, completion:  nil)
+        // change the background color
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 1
+        //subview.backgroundColor = UIColor.purple
+    }
+    
+    func resetGame() {
+        //TODO
+        return
     }
 }
