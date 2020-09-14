@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum Direction: Int {
+    case horizontal = 0
+    case vertical = 1
+}
+
 struct WordsListsManager {
     
     static let categories = ["Countries", "Sports", "Body Parts"]

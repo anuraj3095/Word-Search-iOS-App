@@ -15,7 +15,7 @@ class ArenaViewController: UIViewController {
     let totalElements = 144
     let totalRows = 12
     let totalColomns = 12
-    let totalWords = 3
+    let totalWords = 6
     var matrix : Array<[Int]> = [[]]
     var wordsLabelsList : Array<UILabel> = []
     var currentWordSelection: String = "" {
@@ -27,6 +27,7 @@ class ArenaViewController: UIViewController {
     var numberOfWordsGuessed = 0
     var wordsManager = WordsListsManager()
     var wordCategory = ""
+    var wordSelectionDirection: Direction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +69,9 @@ class ArenaViewController: UIViewController {
         word1Label.text = wordsList[0]
         word2Label.text = wordsList[1]
         word3Label.text = wordsList[2]
-//        word4Label.text = wordsList[3]
-//        word5Label.text = wordsList[4]
-//        word6Label.text = wordsList[5]
+        word4Label.text = wordsList[3]
+        word5Label.text = wordsList[4]
+        word6Label.text = wordsList[5]
     }
     
     func addWordsToCollection() {
@@ -80,11 +81,14 @@ class ArenaViewController: UIViewController {
             var startRow = Int.random(in: 0..<totalRows)
             var startColumn = Int.random(in: 0..<totalColomns)
             let wordSize = word.count
-            // if we have space to add in right continue or again get a random value
+            // if we have space to add in right/down continue or again get a random value
             
             var row = startRow
             var colm = startColumn
             var iter = 0
+            
+            // get random direction
+            var direction: Direction = Direction(rawValue: Int.random(in: 0...1)) ?? .horizontal
             
             while iter != wordSize {
                 
@@ -96,10 +100,15 @@ class ArenaViewController: UIViewController {
                     startColumn = Int.random(in: 0..<totalColomns)
                     row = startRow
                     colm = startColumn
+                    direction = Direction(rawValue: Int.random(in: 0...1)) ?? .horizontal
                 } else {
                     iter += 1
-                    //row += 1
-                    colm += 1
+                    if direction == .horizontal {
+                        colm += 1
+                    } else {
+                        row += 1
+                    }
+                    
                 }
             }
             
@@ -114,9 +123,14 @@ class ArenaViewController: UIViewController {
                 //update Matrix
                 }
                 matrix[startRow][startColumn] = 1
-                //startRow += 1
-                startColumn += 1
-                indx += 1
+                if direction == .horizontal {
+                    startColumn += 1
+                    indx += 1
+                } else {
+                    startRow += 1
+                    indx += totalColomns
+                }
+                
                 
             }
             
@@ -168,13 +182,42 @@ extension ArenaViewController:  UICollectionViewDataSource, UICollectionViewDele
         
         let cell = wordsCollection.cellForItem(at: indexPath) as! WordCollectionViewCell
         
-        if selectedCells.isEmpty || selectedCells.last == indexPath.item - 1 {
+        var allowSelection = false;
+        
+        if let dir = wordSelectionDirection {
+            switch dir {
+            case .horizontal:
+                if selectedCells.last == indexPath.item - 1 {
+                    allowSelection = true
+                }
+            case .vertical:
+                if selectedCells.last == indexPath.item - totalColomns {
+                    allowSelection = true
+                }
+            }
+        } else if !selectedCells.isEmpty {
+            // we are doing second letter selection, better check the direction
+            if selectedCells.last == indexPath.item - 1 {
+                allowSelection = true
+                wordSelectionDirection = .horizontal
+            } else if selectedCells.last == indexPath.item - totalColomns {
+                allowSelection = true
+                wordSelectionDirection = .vertical
+            } else {
+                clearAllSelction()
+                wordSelectionDirection = nil
+            }
+        }
+        
+        // allow selection if there are no cuurent selection of if the correct ordered cell is selected
+        if selectedCells.isEmpty || allowSelection {
             cell.letter.backgroundColor = UIColor.yellow
             selectedCells.append(indexPath.row)
             currentWordSelection += cell.letter.text!
         }
         else {
             clearAllSelction()
+            wordSelectionDirection = nil
         }
     }
     
