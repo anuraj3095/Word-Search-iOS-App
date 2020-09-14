@@ -119,7 +119,7 @@ class ArenaViewController: UIViewController {
                 if let cell = wordsCollection.cellForItem(at: indxPath) as? WordCollectionViewCell {
                 cell.letter.text = String(char).capitalized
                 // testing new entries
-                cell.letter.textColor = UIColor.red
+                //cell.letter.textColor = UIColor.red
                 //update Matrix
                 }
                 matrix[startRow][startColumn] = 1
