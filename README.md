@@ -27,5 +27,5 @@ If user founds out all words, the game resets and new game begins.
 ![foundAll](https://user-images.githubusercontent.com/67972964/92421891-b9222100-f12f-11ea-9020-3781cff085a2.png)
 
 ### TODO
-* Add words vertically, diagonally in the puzzle.
+* Add words diagonally in the puzzle.
 * Introduce levels of hardness.
