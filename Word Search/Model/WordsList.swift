@@ -15,7 +15,9 @@ enum Direction: Int {
 
 struct WordsListsManager {
     
-    static let categories = ["Countries", "Sports", "Body Parts"]
+    static let categories = ["Technology", "Countries", "Sports", "Body Parts"]
+    
+    let tech_list = ["Swift", "Kotlin", "ObjectiveC", "Variable", "Java", "Mobile"]
     
     let country_list = ["Austria","Bahamas","Bahrain","Belarus","Belgium","Bermuda","Bhutan","Brazil","Chile","China","Colombia","Congo","Denmark","Fiji","Finland","France","Greece","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Kenya","Kuwait","Lebanon","Lesotho","Liberia","Libya","Malaysia","Maldives","Mali","Malta","Monaco","Nigeria","Norway","Oman","Poland","Portugal","Qatar","Romania","Russia","Singapore","Slovakia","Sudan","Sweden","Switzerland","Syria","Taiwan","Tanzania","Thailand","Turkey","Ukraine","Uruguay","Vietnam", "US","Yemen","Zambia"];
 
@@ -37,13 +39,15 @@ struct WordsListsManager {
     
     func getRandomFromList(totalWords: Int, wordLimit: Int, category: String) -> [String] {
         // make sure word is not repeating and size > row or column
-        var wordsBucket = country_list
+        var wordsBucket = tech_list
         switch category {
         case WordsListsManager.categories[0]:
-            wordsBucket = country_list
+            wordsBucket = tech_list
         case WordsListsManager.categories[1]:
-            wordsBucket = sports_list
+            wordsBucket = country_list
         case WordsListsManager.categories[2]:
+            wordsBucket = sports_list
+        case WordsListsManager.categories[3]:
             wordsBucket = bodyParts_list
         default:
             break

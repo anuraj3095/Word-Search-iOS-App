@@ -74,7 +74,9 @@ class MainScreenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let destinationVC = segue.destination as! ArenaViewController
         
         if selectedCategory == -1 {
-            selectedCategory = Int.random(in: 0..<WordsListsManager.categories.count)
+            // set to only tech
+            selectedCategory = 0
+                //Int.random(in: 0..<WordsListsManager.categories.count)
         }
         
         destinationVC.wordCategory = WordsListsManager.categories[selectedCategory]
